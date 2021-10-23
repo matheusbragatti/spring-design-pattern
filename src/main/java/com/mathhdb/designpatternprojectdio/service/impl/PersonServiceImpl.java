@@ -51,7 +51,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     private Address verifyCep(Person person){
-        Address addressCep = addressRepository.findById(Long.valueOf(person.getAddress().getCep())).orElseGet(() -> {
+        Address addressCep = addressRepository.findById(person.getAddress().getCep()).orElseGet(() -> {
             Address newAddress = viaCepService.getCep(person.getAddress().getCep());
             addressRepository.save(newAddress);
             return newAddress;
